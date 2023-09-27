@@ -1,0 +1,34 @@
+apply from: rootProject.file('scripts/maven-lib.gradle')
+
+android {
+    namespace 'com.happiness.hiero.base.logger'
+    buildTypes{
+
+        debug{
+            jniDebuggable true
+        }
+        release{
+            jniDebuggable false
+        }
+    }
+    defaultConfig {
+        externalNativeBuild {
+            cmake {
+                cppFlags ''
+                abiFilters = ["armeabi-v7a","arm64-v8a"]
+            }
+        }
+
+        ndk{
+            //noinspection ChromeOsAbiSupport
+            abiFilters "armeabi-v7a","arm64-v8a"
+        }
+    }
+    externalNativeBuild {
+        cmake {
+            path file('src/main/cpp/CMakeLists.txt')
+            version '3.22.1'
+        }
+    }
+}
+
