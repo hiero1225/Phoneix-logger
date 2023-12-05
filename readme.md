@@ -142,6 +142,22 @@ return result;
 
 
 
+FAQ:
+1.用法：
+ step1 ：
+ AppLogMgr.init进行初始化
+ 第一个参数是日志类型（ android基于java buffer的原生）,PHONEIX_LOG（mmap方案）两种，老铁们自己选择用那种，建议：如果没有特殊业务需求，Alog即可满足日常需求。
+
+ step2：
+ 日志调用 LoggerUtils.xx方法即可
+
+
+ 调用示例：
+ AppLogMgr.init(LoggerType.PHOENIX_LOG, app.filesDir.path,  app.filesDir.path,)
+//日志最大容量为50M
+AppLogMgr.MAX_FILE_SIZE = 5 * 1024 * 1024
+LoggerUtils.i(HomeModule.MODULE_TAG, clzTag, "init with env: ${InfoUtils.getFormattedItemsInfo(app)}")
+
 
 
 
